@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # lockre
 
 A new Flutter project.
@@ -157,4 +158,6 @@ class _PhotoCnibState extends State<PhotoCnib> {
   }
 }
 # lockre
+=======
+>>>>>>> main
 # lockre
