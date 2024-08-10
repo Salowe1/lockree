@@ -12,10 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.10.5'  # Explicitly set a known working version
+    - name: Install Flutter
+      run: |
+        git clone https://github.com/flutter/flutter.git --branch stable --depth 1
+        echo "::add-path::${{ github.workspace }}/flutter/bin"
+        flutter doctor
 
     - name: Install CocoaPods
       run: |
