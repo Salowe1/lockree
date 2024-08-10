@@ -11,14 +11,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: 'stable'
+        flutter-version: '3.10.5'  # Explicitly set a known working version
+
     - name: Install CocoaPods
-      run: pod install
+      run: |
+        cd ios
+        pod install
+
     - name: Build iOS
       run: flutter build ios --release --no-codesign
+
     - name: Archive iOS App
       run: |
         xcodebuild -workspace ios/Runner.xcworkspace \
@@ -27,12 +33,14 @@ jobs:
         -configuration Release \
         -archivePath $PWD/build/Runner.xcarchive \
         clean archive
+
     - name: Export IPA
       run: |
         xcodebuild -exportArchive \
         -archivePath $PWD/build/Runner.xcarchive \
         -exportPath $PWD/build \
         -exportOptionsPlist ios/Runner/Info.plist
+
     - name: Upload IPA
       uses: actions/upload-artifact@v2
       with:
