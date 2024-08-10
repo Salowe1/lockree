@@ -14,20 +14,25 @@ jobs:
 
     - name: Install Flutter
       run: |
+        set -x  # Enable debugging
         git clone https://github.com/flutter/flutter.git -b stable --depth 1
         echo "${{ github.workspace }}/flutter/bin" >> $GITHUB_PATH
         flutter doctor
 
     - name: Install CocoaPods
       run: |
+        set -x  # Enable debugging
         cd ios
         pod install
 
     - name: Build iOS
-      run: flutter build ios --release --no-codesign
+      run: |
+        set -x  # Enable debugging
+        flutter build ios --release --no-codesign
 
     - name: Archive iOS App
       run: |
+        set -x  # Enable debugging
         xcodebuild -workspace ios/Runner.xcworkspace \
         -scheme Runner \
         -sdk iphoneos \
@@ -37,6 +42,7 @@ jobs:
 
     - name: Extract .app file
       run: |
+        set -x  # Enable debugging
         mkdir -p $PWD/build/app
         cp -R $PWD/build/Runner.xcarchive/Products/Applications/Runner.app $PWD/build/app/Runner.app
 
@@ -48,6 +54,7 @@ jobs:
 
     - name: Export IPA
       run: |
+        set -x  # Enable debugging
         xcodebuild -exportArchive \
         -archivePath $PWD/build/Runner.xcarchive \
         -exportPath $PWD/build \
@@ -58,64 +65,3 @@ jobs:
       with:
         name: Runner.ipa
         path: build/Runner.ipa
-        name: iOS Build and Archive
-
-        on:
-          push:
-            branches:
-              - main
-        
-        jobs:
-          build:
-            runs-on: macos-latest
-        
-            steps:
-            - uses: actions/checkout@v2
-        
-            - name: Install Flutter
-              run: |
-                git clone https://github.com/flutter/flutter.git -b stable --depth 1
-                echo "${{ github.workspace }}/flutter/bin" >> $GITHUB_PATH
-                flutter doctor
-        
-            - name: Install CocoaPods
-              run: |
-                cd ios
-                pod install
-        
-            - name: Build iOS
-              run: flutter build ios --release --no-codesign
-        
-            - name: Archive iOS App
-              run: |
-                xcodebuild -workspace ios/Runner.xcworkspace \
-                -scheme Runner \
-                -sdk iphoneos \
-                -configuration Release \
-                -archivePath $PWD/build/Runner.xcarchive \
-                clean archive
-        
-            - name: Extract .app file
-              run: |
-                mkdir -p $PWD/build/app
-                cp -R $PWD/build/Runner.xcarchive/Products/Applications/Runner.app $PWD/build/app/Runner.app
-        
-            - name: Upload .app file
-              uses: actions/upload-artifact@v2
-              with:
-                name: Runner.app
-                path: build/app/Runner.app
-        
-            - name: Export IPA
-              run: |
-                xcodebuild -exportArchive \
-                -archivePath $PWD/build/Runner.xcarchive \
-                -exportPath $PWD/build \
-                -exportOptionsPlist ios/Runner/Info.plist
-        
-            - name: Upload IPA
-              uses: actions/upload-artifact@v2
-              with:
-                name: Runner.ipa
-                path: build/Runner.ipa
-        
