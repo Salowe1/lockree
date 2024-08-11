@@ -9,12 +9,12 @@ target 'Runner' do
   use_modular_headers!
 
   # Firebase pods
-  pod 'Firebase/Core'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Storage'
-  pod 'Firebase/AppCheck'
-  pod 'Firebase/Analytics'
+  pod 'Firebase/Core', '~> 10.0'
+  pod 'Firebase/Firestore', '~> 10.0'
+  pod 'Firebase/Auth', '~> 10.0'
+  pod 'Firebase/Storage', '~> 10.0'
+  pod 'Firebase/AppCheck', '~> 10.0'
+  pod 'Firebase/Analytics', '~> 10.0'
 
   # Add any other pods you need
 
