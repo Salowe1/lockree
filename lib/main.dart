@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart'; // Firebase initialization commented out
 import 'package:flutter/services.dart';
 import 'package:lockre/screens/auth/login/login.dart';
 import 'package:lockre/screens/auth/onboard.dart';
@@ -13,7 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   // Initialize Firebase
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp(); // Firebase initialization commented out
   
   // Connect to MongoDB
   await _connectToMongoDB();
