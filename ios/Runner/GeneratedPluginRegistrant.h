@@ -4,19 +4,16 @@
 
 // clang-format off
 
-#import "GeneratedPluginRegistrant.h"
+#ifndef GeneratedPluginRegistrant_h
+#define GeneratedPluginRegistrant_h
 
-// Import the Firestore plugin header
-#import <cloud_firestore/FLTFirebaseFirestorePlugin.h>
+#import <Flutter/Flutter.h>
 
-@implementation GeneratedPluginRegistrant
+NS_ASSUME_NONNULL_BEGIN
 
-+ (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  if ([registry hasPlugin:@"FLTFirebaseFirestorePlugin"]) {
-    [FLTFirebaseFirestorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseFirestorePlugin"]];
-  }
-  
-  // Register other plugins here if needed
-}
-
+@interface GeneratedPluginRegistrant : NSObject
++ (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry;
 @end
+
+NS_ASSUME_NONNULL_END
+#endif /* GeneratedPluginRegistrant_h */
