@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lockre/screens/send/amount_to_send.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:contacts_service/contacts_service.dart' as contacts_service;
+// import 'package:contacts_service/contacts_service.dart' as contacts_service; // Commented out
 import 'package:flutter_native_contact_picker/flutter_native_contact_picker.dart' as native_picker;
 import 'package:lockre/constants/colors.dart';
 import 'package:lockre/routes/route.dart'; // Import the MyRoutes class
@@ -14,8 +14,8 @@ class SenderNumberScreen extends StatefulWidget {
 }
 
 class _SenderNumberScreenState extends State<SenderNumberScreen> {
-  List<contacts_service.Contact> _contacts = [];
-  List<contacts_service.Contact> _filteredContacts = [];
+  // List<contacts_service.Contact> _contacts = []; // Commented out
+  // List<contacts_service.Contact> _filteredContacts = []; // Commented out
   bool _isLoading = true;
   final TextEditingController _controller = TextEditingController();
   String _selectedCountryCode = 'BF';
@@ -27,7 +27,7 @@ class _SenderNumberScreenState extends State<SenderNumberScreen> {
     super.initState();
     _askPermissions();
     _controller.addListener(_filterContacts);
-    _getContacts();
+    _getContacts(); // This function will also need to be commented out
   }
 
   @override
@@ -46,30 +46,30 @@ class _SenderNumberScreenState extends State<SenderNumberScreen> {
     }
   }
 
-  Future<void> _getContacts() async {
-    try {
-      var contacts = await contacts_service.ContactsService.getContacts();
-      setState(() {
-        _contacts = contacts.toList();
-        _filteredContacts = _contacts;
-        _isLoading = false;
-      });
-    } catch (e) {
-      print('Error fetching contacts: $e');
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
+  // Future<void> _getContacts() async { // Commented out
+  //   try {
+  //     var contacts = await contacts_service.ContactsService.getContacts(); // Commented out
+  //     setState(() {
+  //       _contacts = contacts.toList(); // Commented out
+  //       _filteredContacts = _contacts; // Commented out
+  //       _isLoading = false;
+  //     });
+  //   } catch (e) {
+  //     print('Error fetching contacts: $e');
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //   }
+  // }
 
   void _filterContacts() {
     String query = _controller.text.toLowerCase();
     setState(() {
-      _filteredContacts = _contacts.where((contact) {
-        String contactName = contact.displayName?.toLowerCase() ?? '';
-        var phoneNumbers = contact.phones?.map((e) => e.value ?? '').toList() ?? [];
-        return phoneNumbers.any((phoneNumber) => phoneNumber.contains(query)) || contactName.contains(query);
-      }).toList();
+      // _filteredContacts = _contacts.where((contact) { // Commented out
+      //   String contactName = contact.displayName?.toLowerCase() ?? ''; // Commented out
+      //   var phoneNumbers = contact.phones?.map((e) => e.value ?? '').toList() ?? []; // Commented out
+      //   return phoneNumbers.any((phoneNumber) => phoneNumber.contains(query)) || contactName.contains(query); // Commented out
+      // }).toList(); // Commented out
     });
   }
 
@@ -175,30 +175,31 @@ class _SenderNumberScreenState extends State<SenderNumberScreen> {
     if (_isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
-    if (_filteredContacts.isEmpty) {
-      return const Center(child: Text('Aucun contact trouvé'));
-    }
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _filteredContacts.length,
-        itemBuilder: (context, index) {
-          var contact = _filteredContacts[index];
-          var phoneNumbers = contact.phones?.map((e) => _normalizePhoneNumber(e.value ?? '')).toList() ?? [];
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: phoneNumbers.map((phone) => ContactItem(
-              name: contact.displayName ?? '',
-              phone: phone,
-              onContactSelected: (selectedPhone) {
-                setState(() {
-                  _controller.text = selectedPhone ?? '';
-                });
-              },
-            )).toList(),
-          );
-        },
-      ),
-    );
+    // if (_filteredContacts.isEmpty) { // Commented out
+    //   return const Center(child: Text('Aucun contact trouvé')); // Commented out
+    // }
+    // return Expanded(
+    //   child: ListView.builder(
+    //     itemCount: _filteredContacts.length, // Commented out
+    //     itemBuilder: (context, index) { // Commented out
+    //       var contact = _filteredContacts[index]; // Commented out
+    //       var phoneNumbers = contact.phones?.map((e) => _normalizePhoneNumber(e.value ?? '')).toList() ?? []; // Commented out
+    //       return Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: phoneNumbers.map((phone) => ContactItem( // Commented out
+    //           name: contact.displayName ?? '', // Commented out
+    //           phone: phone, // Commented out
+    //           onContactSelected: (selectedPhone) { // Commented out
+    //             setState(() { // Commented out
+    //               _controller.text = selectedPhone ?? ''; // Commented out
+    //             }); // Commented out
+    //           }, // Commented out
+    //         )).toList(), // Commented out
+    //       ); // Commented out
+    //     }, // Commented out
+    //   ); // Commented out
+    // }
+    return const Center(child: Text('Contact list not available')); // Placeholder text
   }
 
   Widget _buildContinueButton() {
