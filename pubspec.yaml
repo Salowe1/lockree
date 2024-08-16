@@ -26,7 +26,7 @@ dependencies:
     sdk: flutter
   # mongo_dart: ^0.10.3 # <-- Commented out
   meta: ^1.15.0
-  edge_detection: ^1.1.3
+
   cupertino_icons: ^1.0.2
   get: ^4.6.1
   intl_phone_number_input: ^0.7.4
