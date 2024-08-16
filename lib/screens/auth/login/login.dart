@@ -4,7 +4,7 @@ import 'package:lockre/constants/colors.dart';
 import 'package:lockre/screens/home/home.dart';
 import 'package:lockre/screens/auth/signup/phone_number.dart';
 import 'package:lockre/screens/auth/reset/reset_password.dart';
-import 'package:mongo_dart/mongo_dart.dart' as mongo;
+// import 'package:mongo_dart/mongo_dart.dart' as mongo;
 
 const MONGO_URL = "mongodb+srv://salowe:Adouabou102001.@lockre.xrasr0e.mongodb.net/?retryWrites=true&w=majority&appName=Lockre";
 const USER_COLLECTION = "lockre";
