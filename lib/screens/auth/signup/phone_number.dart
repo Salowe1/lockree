@@ -18,7 +18,7 @@ class PhoneNumberScreen extends StatefulWidget {
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   String phoneNumber = '';
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _isButtonPressed = false;
   bool _isLoading = false;
   String _errorMessage = '';
@@ -55,39 +55,39 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   //   }
   // }
 
-  void _verifyPhoneNumber(String phoneNumber) async {
-    setState(() {
-      _isLoading = true;
-      _errorMessage = '';
-    });
+  // void _verifyPhoneNumber(String phoneNumber) async {
+  //   setState(() {
+  //     _isLoading = true;
+  //     _errorMessage = '';
+  //   });
 
-    await _auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        await _auth.signInWithCredential(credential);
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        print('Phone number verification failed: $e');
-        setState(() {
-          _errorMessage = 'Phone number verification failed. Please try again.';
-        });
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        Get.to(() => OTPScreen(
-        phoneNumber: phoneNumber,
-        verificationId: verificationId,
-      ));
+  //   await _auth.verifyPhoneNumber(
+  //     phoneNumber: phoneNumber,
+  //     verificationCompleted: (PhoneAuthCredential credential) async {
+  //       await _auth.signInWithCredential(credential);
+  //     },
+  //     verificationFailed: (FirebaseAuthException e) {
+  //       print('Phone number verification failed: $e');
+  //       setState(() {
+  //         _errorMessage = 'Phone number verification failed. Please try again.';
+  //       });
+  //     },
+  //     codeSent: (String verificationId, int? resendToken) {
+  //       Get.to(() => OTPScreen(
+  //       phoneNumber: phoneNumber,
+  //       verificationId: verificationId,
+  //     ));
 
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        // Handle timeout
-      },
-    ).whenComplete(() {
-      setState(() {
-        _isLoading = false;
-      });
-    });
-  }
+  //     },
+  //     codeAutoRetrievalTimeout: (String verificationId) {
+  //       // Handle timeout
+  //     },
+  //   ).whenComplete(() {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //   });
+  // }
 
   InputDecoration _inputDecoration(String label) {
     return InputDecoration(
@@ -189,7 +189,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                       else
                         _animatedButton(
                           onPressed: () {
-                            _verifyPhoneNumber(phoneNumber);
+                            // _verifyPhoneNumber(phoneNumber);
                           },
                           label: 'Continue',
                           isPressed: _isButtonPressed,
