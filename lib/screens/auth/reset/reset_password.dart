@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({Key? key}) : super(key: key);
+  const ChangePasswordScreen({Key? key}) : super(key: key});
 
   @override
   _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
@@ -24,15 +24,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
       try {
         // Re-authenticate user
-        User user = FirebaseAuth.instance.currentUser!;
-        AuthCredential credential = EmailAuthProvider.credential(
-          email: user.email!,
-          password: _currentPasswordController.text.trim(),
-        );
-        await user.reauthenticateWithCredential(credential);
+        // User user = FirebaseAuth.instance.currentUser!;
+        // AuthCredential credential = EmailAuthProvider.credential(
+        //   email: user.email!,
+        //   password: _currentPasswordController.text.trim(),
+        // );
+        // await user.reauthenticateWithCredential(credential);
 
         // Update password
-        await user.updatePassword(_newPasswordController.text.trim());
+        // await user.updatePassword(_newPasswordController.text.trim());
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Password successfully changed')),
         );
