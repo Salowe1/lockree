@@ -16,7 +16,7 @@ Future<void> main() async {
   // await Firebase.initializeApp(); // Firebase initialization commented out
   
   // Connect to MongoDB
-  await _connectToMongoDB();
+  // await _connectToMongoDB();
 
   // Fetch shared preferences and determine initial route
   final isFirstTime = await _getFirstTimePreference();
