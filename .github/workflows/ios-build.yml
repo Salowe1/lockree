@@ -19,7 +19,6 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get -v
 
-      
       - name: Ensure CocoaPods is up-to-date
         run: pod repo update
         working-directory: ios
@@ -32,6 +31,12 @@ jobs:
 
       - name: Install CocoaPods dependencies
         run: pod install --verbose
+        working-directory: ios
+
+      - name: Flutter Clean and Pod Cache Clean
+        run: |
+          flutter clean
+          pod cache clean --all
         working-directory: ios
 
       - name: Build iOS Release
