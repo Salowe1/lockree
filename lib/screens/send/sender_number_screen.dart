@@ -27,7 +27,7 @@ class _SenderNumberScreenState extends State<SenderNumberScreen> {
     super.initState();
     _askPermissions();
     _controller.addListener(_filterContacts);
-    _getContacts(); // This function will also need to be commented out
+    // _getContacts(); // Commented out the call to _getContacts
   }
 
   @override
