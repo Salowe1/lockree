@@ -19,6 +19,12 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get -v
 
+      - name: Delete and Regenerate ios Folder
+        run: |
+          rm -rf ios
+          flutter create .
+        working-directory: .
+
       - name: Ensure CocoaPods is up-to-date
         run: pod repo update
         working-directory: ios
