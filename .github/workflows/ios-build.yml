@@ -25,9 +25,7 @@ jobs:
           flutter create .
         working-directory: .
 
-      - name: Ensure CocoaPods is up-to-date
-        run: pod repo update
-        working-directory: ios
+      
 
       - name: Clean old Pods and Derived Data
         run: |
@@ -35,9 +33,7 @@ jobs:
           rm -rf ios/Podfile.lock
           rm -rf ~/Library/Developer/Xcode/DerivedData
 
-      - name: Install CocoaPods dependencies
-        run: pod install --verbose
-        working-directory: ios
+      
 
       - name: Flutter Clean and Pod Cache Clean
         run: |
