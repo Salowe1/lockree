@@ -6,9 +6,9 @@ import 'package:lockre/constants/colors.dart' as Constants;
 import 'package:lockre/screens/auth/signup/photo_cnib.dart';
 // import 'package:mongo_dart/mongo_dart.dart' as mongo;
 
-const MONGO_URL =
-    "mongodb+srv://salowe:Adouabou102001.@lockre.xrasr0e.mongodb.net/?retryWrites=true&w=majority&appName=Lockre";
-const USER_COLLECTION = "lockre";
+// const MONGO_URL =
+//     "mongodb+srv://salowe:Adouabou102001.@lockre.xrasr0e.mongodb.net/?retryWrites=true&w=majority&appName=Lockre";
+// const USER_COLLECTION = "lockre";
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({Key? key}) : super(key: key);
@@ -25,41 +25,41 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   bool _isChecked = false;
   bool _dataExists = false;
 
-  static late mongo.Db db;
-  static late mongo.DbCollection userCollection;
+  // static late mongo.Db db;
+  // static late mongo.DbCollection userCollection;
 
   @override
   void initState() {
     super.initState();
-    _connectToMongoDB();
+    // _connectToMongoDB();
   }
 
-  Future<void> _connectToMongoDB() async {
-    try {
-      db = await mongo.Db.create(MONGO_URL);
-      await db.open();
-      userCollection = db.collection(USER_COLLECTION);
-      print('Connected to MongoDB.');
-    } catch (e) {
-      print('MongoDB Connection Error: $e');
-    }
-  }
+  // Future<void> _connectToMongoDB() async {
+  //   try {
+  //     db = await mongo.Db.create(MONGO_URL);
+  //     await db.open();
+  //     userCollection = db.collection(USER_COLLECTION);
+  //     print('Connected to MongoDB.');
+  //   } catch (e) {
+  //     print('MongoDB Connection Error: $e');
+  //   }
+  // }
 
-  Future<void> _checkDataExists() async {
-    try {
-      var result = await userCollection.findOne({
-        'email': _emailController.text,
-      });
-      setState(() {
-        _dataExists = result != null;
-        if (_dataExists) {
-          _showSnackbar('Data already exists.');
-        }
-      });
-    } catch (e) {
-      print('Error checking data existence: $e');
-    }
-  }
+  // Future<void> _checkDataExists() async {
+  //   try {
+  //     var result = await userCollection.findOne({
+  //       'email': _emailController.text,
+  //     });
+  //     setState(() {
+  //       _dataExists = result != null;
+  //       if (_dataExists) {
+  //         _showSnackbar('Data already exists.');
+  //       }
+  //     });
+  //   } catch (e) {
+  //     print('Error checking data existence: $e');
+  //   }
+  // }
 
   void _showSnackbar(String message) {
     Get.snackbar('Info', message, backgroundColor: Colors.red);
@@ -75,8 +75,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           'createdAt': DateTime.now().toIso8601String(),
         };
 
-        var result = await userCollection.insert(userData);
-        print('Insert Result: $result');
+        // var result = await userCollection.insert(userData);
+        // print('Insert Result: $result');
 
         Get.off(() => PhotoCnib());
       } catch (e) {
@@ -105,7 +105,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       if (googleUser != null) {
         _nameController.text = googleUser.displayName ?? '';
         _emailController.text = googleUser.email;
-        _checkDataExists();
+        // _checkDataExists();
         _showSnackbar('Google Sign-In Successful');
       }
     } catch (e) {
@@ -124,7 +124,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       );
       _nameController.text = '${credential.givenName ?? ''} ${credential.familyName ?? ''}';
       _emailController.text = credential.email ?? '';
-      _checkDataExists();
+      // _checkDataExists();
     } catch (e) {
       print('Apple Sign-In Error: $e');
     }
