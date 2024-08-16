@@ -6,9 +6,9 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'complete_profile.dart';
 
-const MONGO_URL =
-    "mongodb+srv://salowe:Adouabou102001.@lockre.xrasr0e.mongodb.net/?retryWrites=true&w=majority&appName=Lockre";
-const USER_COLLECTION = "lockre";
+// const MONGO_URL =
+//     "mongodb+srv://salowe:Adouabou102001.@lockre.xrasr0e.mongodb.net/?retryWrites=true&w=majority&appName=Lockre";
+// const USER_COLLECTION = "lockre";
 
 class OTPScreen extends StatefulWidget {
   final String phoneNumber;
@@ -20,7 +20,6 @@ class OTPScreen extends StatefulWidget {
   _OTPScreenState createState() => _OTPScreenState();
 }
 
-
 class _OTPScreenState extends State<OTPScreen> with CodeAutoFill {
   String otpCode = '';
 
@@ -31,25 +30,25 @@ class _OTPScreenState extends State<OTPScreen> with CodeAutoFill {
     });
   }
 
-  Future<bool> _verifyOTP(String otp) async {
-    try {
-      mongo.Db db = await mongo.Db.create(MONGO_URL);
-      await db.open();
-      mongo.DbCollection userCollection = db.collection(USER_COLLECTION);
+  // Future<bool> _verifyOTP(String otp) async {
+  //   try {
+  //     mongo.Db db = await mongo.Db.create(MONGO_URL);
+  //     await db.open();
+  //     mongo.DbCollection userCollection = db.collection(USER_COLLECTION);
 
-      var result = await userCollection.findOne({
-        'phone_number': widget.phoneNumber,
-        'otp': otp,
-      });
+  //     var result = await userCollection.findOne({
+  //       'phone_number': widget.phoneNumber,
+  //       'otp': otp,
+  //     });
 
-      await db.close();
+  //     await db.close();
 
-      return result != null; // Return true if OTP is valid
-    } catch (e) {
-      print('Error verifying OTP: $e');
-      return false; // Handle error: return false for invalid OTP
-    }
-  }
+  //     return result != null; // Return true if OTP is valid
+  //   } catch (e) {
+  //     print('Error verifying OTP: $e');
+  //     return false; // Handle error: return false for invalid OTP
+  //   }
+  // }
 
   void showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -107,26 +106,26 @@ class _OTPScreenState extends State<OTPScreen> with CodeAutoFill {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
-                  bool verified = await _verifyOTP(otpCode);
+                  bool verified = false; // Replace with actual OTP verification logic
                   if (verified) {
                     // Insert user data into MongoDB if OTP is verified
-                    try {
-                      mongo.Db db = await mongo.Db.create(MONGO_URL);
-                      await db.open();
-                      mongo.DbCollection userCollection = db.collection(USER_COLLECTION);
+                    // try {
+                    //   mongo.Db db = await mongo.Db.create(MONGO_URL);
+                    //   await db.open();
+                    //   mongo.DbCollection userCollection = db.collection(USER_COLLECTION);
 
-                      await userCollection.insert({
-                        'phone_number': widget.phoneNumber,
-                        // Add other user data fields as needed
-                      });
+                    //   await userCollection.insert({
+                    //     'phone_number': widget.phoneNumber,
+                    //     // Add other user data fields as needed
+                    //   });
 
-                      await db.close();
+                    //   await db.close();
 
-                      Get.to(() => CompleteProfileScreen());
-                    } catch (e) {
-                      print('Error inserting user data: $e');
-                      showSnackBar('Failed to complete profile. Please try again.');
-                    }
+                    Get.to(() => CompleteProfileScreen());
+                    // } catch (e) {
+                    //   print('Error inserting user data: $e');
+                    //   showSnackBar('Failed to complete profile. Please try again.');
+                    // }
                   } else {
                     // Handle OTP verification failure
                     showSnackBar('Invalid OTP');
