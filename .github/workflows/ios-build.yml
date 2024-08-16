@@ -19,21 +19,13 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get -v
 
-      - name: Delete and Regenerate ios Folder
-        run: |
-          rm -rf ios
-          flutter create .
-        working-directory: .
+      
 
       
 
       
 
-      - name: Flutter Clean and Pod Cache Clean
-        run: |
-          flutter clean
-          pod cache clean --all
-        working-directory: ios
+     
 
       - name: Build iOS Release
         run: flutter build ios --release --no-codesign
