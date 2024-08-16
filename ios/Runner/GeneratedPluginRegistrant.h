@@ -4,20 +4,16 @@
 
 // clang-format off
 
-#import "GeneratedPluginRegistrant.h"
+#ifndef GeneratedPluginRegistrant_h
+#define GeneratedPluginRegistrant_h
 
-#if __has_include(<contacts_service/ContactsServicePlugin.h>)
-#import <contacts_service/ContactsServicePlugin.h>
-#else
-@import contacts_service;
-#endif
+#import <Flutter/Flutter.h>
 
-@implementation GeneratedPluginRegistrant
+NS_ASSUME_NONNULL_BEGIN
 
-+ (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  if ([registry registrarForPlugin:@"ContactsServicePlugin"] == nil) {
-    [ContactsServicePlugin registerWithRegistrar:[registry registrarForPlugin:@"ContactsServicePlugin"]];
-  }
-}
-
+@interface GeneratedPluginRegistrant : NSObject
++ (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry;
 @end
+
+NS_ASSUME_NONNULL_END
+#endif /* GeneratedPluginRegistrant_h */
