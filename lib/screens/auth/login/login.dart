@@ -6,82 +6,82 @@ import 'package:lockre/screens/auth/signup/phone_number.dart';
 import 'package:lockre/screens/auth/reset/reset_password.dart';
 // import 'package:mongo_dart/mongo_dart.dart' as mongo;
 
-const MONGO_URL = "mongodb+srv://salowe:Adouabou102001.@lockre.xrasr0e.mongodb.net/?retryWrites=true&w=majority&appName=Lockre";
-const USER_COLLECTION = "lockre";
+// const MONGO_URL = "mongodb+srv://salowe:Adouabou102001.@lockre.xrasr0e.mongodb.net/?retryWrites=true&w=majority&appName=Lockre";
+// const USER_COLLECTION = "lockre";
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+// class LoginScreen extends StatefulWidget {
+//   const LoginScreen({Key? key}) : super(key: key);
 
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
+//   @override
+//   _LoginScreenState createState() => _LoginScreenState();
+// }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailOrNameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  bool _isLoading = false;
-  String _errorMessage = '';
-  bool _passwordVisible = false;
-  bool _isButtonPressed = false;
-  bool _isSignUpButtonPressed = false;
+// class _LoginScreenState extends State<LoginScreen> {
+//   final TextEditingController _emailOrNameController = TextEditingController();
+//   final TextEditingController _passwordController = TextEditingController();
+//   final _formKey = GlobalKey<FormState>();
+//   bool _isLoading = false;
+//   String _errorMessage = '';
+//   bool _passwordVisible = false;
+//   bool _isButtonPressed = false;
+//   bool _isSignUpButtonPressed = false;
 
-  static late mongo.Db db;
-  static late mongo.DbCollection userCollection;
+//   static late mongo.Db db;
+//   static late mongo.DbCollection userCollection;
 
-  @override
-  void initState() {
-    super.initState();
-    _connectToMongoDB();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     _connectToMongoDB();
+//   }
 
-  Future<void> _connectToMongoDB() async {
-    try {
-      db = await mongo.Db.create(MONGO_URL);
-      await db.open();
-      userCollection = db.collection(USER_COLLECTION);
-      print('Connected to MongoDB.');
-    } catch (e) {
-      print('MongoDB Connection Error: $e');
-      setState(() {
-        _errorMessage = 'Failed to connect to the database. Please try again later.';
-      });
-    }
-  }
+//   Future<void> _connectToMongoDB() async {
+//     try {
+//       db = await mongo.Db.create(MONGO_URL);
+//       await db.open();
+//       userCollection = db.collection(USER_COLLECTION);
+//       print('Connected to MongoDB.');
+//     } catch (e) {
+//       print('MongoDB Connection Error: $e');
+//       setState(() {
+//         _errorMessage = 'Failed to connect to the database. Please try again later.';
+//       });
+//     }
+//   }
 
-  void _login() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      setState(() {
-        _isLoading = true;
-        _errorMessage = '';
-      });
+//   void _login() async {
+//     if (_formKey.currentState?.validate() ?? false) {
+//       setState(() {
+//         _isLoading = true;
+//         _errorMessage = '';
+//       });
 
-      String emailOrName = _emailOrNameController.text.trim();
-      String password = _passwordController.text.trim();
+//       String emailOrName = _emailOrNameController.text.trim();
+//       String password = _passwordController.text.trim();
 
-      try {
-        Get.offAll(() => const HomeScreen());
-        /* var user = await userCollection.findOne(mongo.where.eq('email', emailOrName).eq('password', password));
+//       try {
+//         Get.offAll(() => const HomeScreen());
+//         /* var user = await userCollection.findOne(mongo.where.eq('email', emailOrName).eq('password', password));
 
-        if (user != null) {
-          Get.offAll(() => const HomeScreen());
-        } else {
-          setState(() {
-            _errorMessage = 'Login failed. Please check your credentials and try again.';
-          });
-        } */
-      } catch (error) {
-        print('Error signing in: $error');
-        setState(() {
-          _errorMessage = 'Login failed. Please check your credentials and try again.';
-        });
-      } finally {
-        setState(() {
-          _isLoading = false;
-        });
-      }
-    }
-  }
+//         if (user != null) {
+//           Get.offAll(() => const HomeScreen());
+//         } else {
+//           setState(() {
+//             _errorMessage = 'Login failed. Please check your credentials and try again.';
+//           });
+//         } */
+//       } catch (error) {
+//         print('Error signing in: $error');
+//         setState(() {
+//           _errorMessage = 'Login failed. Please check your credentials and try again.';
+//         });
+//       } finally {
+//         setState(() {
+//           _isLoading = false;
+//         });
+//       }
+//     }
+//   }
 
   InputDecoration _inputDecoration(String label, {IconData? icon, Widget? suffixIcon}) {
     return InputDecoration(
