@@ -7,7 +7,7 @@ import 'package:lockre/screens/auth/signup/otp.dart';
 // import 'package:mongo_dart/mongo_dart.dart' as mongo;
 // const MONGO_URL = "mongodb+srv://salowe:Adouabou102001.@lockre.xrasr0e.mongodb.net/?retryWrites=true&w=majority&appName=Lockre";
 // const USER_COLLECTION = "lockre";
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({Key? key}) : super(key: key);
