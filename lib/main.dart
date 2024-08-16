@@ -7,7 +7,7 @@ import 'package:lockre/screens/auth/login/login.dart';
 import 'package:lockre/screens/auth/onboard.dart';
 import 'package:lockre/screens/auth/first_page.dart';
 import 'package:lockre/screens/auth/signup/phone_number.dart';
-import 'package:lockre/screens/auth/mongodb/mongodb.dart';
+// import 'package:lockre/screens/auth/mongodb/mongodb.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
