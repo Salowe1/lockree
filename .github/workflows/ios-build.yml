@@ -27,12 +27,6 @@ jobs:
 
       
 
-      - name: Clean old Pods and Derived Data
-        run: |
-          rm -rf ios/Pods
-          rm -rf ios/Podfile.lock
-          rm -rf ~/Library/Developer/Xcode/DerivedData
-
       
 
       - name: Flutter Clean and Pod Cache Clean
