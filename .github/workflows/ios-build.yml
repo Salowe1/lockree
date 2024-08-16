@@ -19,12 +19,7 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get -v
 
-      - name: Initialize CocoaPods
-        run: |
-          cd ios
-          pod init || true
-          pod install --verbose
-
+      
       - name: Ensure CocoaPods is up-to-date
         run: pod repo update
         working-directory: ios
