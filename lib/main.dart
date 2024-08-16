@@ -7,7 +7,7 @@ import 'package:lockre/screens/auth/login/login.dart';
 import 'package:lockre/screens/auth/onboard.dart';
 import 'package:lockre/screens/auth/first_page.dart';
 import 'package:lockre/screens/auth/signup/phone_number.dart';
-// import 'package:lockre/screens/auth/mongodb/mongodb.dart';
+// import 'package:lockre/screens/auth/mongodb/mongodb.dart'; // MongoDB import commented out
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +16,7 @@ Future<void> main() async {
   // await Firebase.initializeApp(); // Firebase initialization commented out
   
   // Connect to MongoDB
-  // await _connectToMongoDB();
+  // await _connectToMongoDB(); // MongoDB connection commented out
 
   // Fetch shared preferences and determine initial route
   final isFirstTime = await _getFirstTimePreference();
@@ -24,15 +24,15 @@ Future<void> main() async {
   runApp(MyApp(isFirstTime: isFirstTime));
 }
 
-Future<void> _connectToMongoDB() async {
-  try {
-    print('Connecting to MongoDB...');
-    await MongoDB.connect();
-    print('Connected to MongoDB.');
-  } catch (e) {
-    print('MongoDB connection error: $e');
-  }
-}
+// Future<void> _connectToMongoDB() async {
+//   try {
+//     print('Connecting to MongoDB...');
+//     await MongoDB.connect();
+//     print('Connected to MongoDB.');
+//   } catch (e) {
+//     print('MongoDB connection error: $e');
+//   }
+// }
 
 Future<bool> _getFirstTimePreference() async {
   try {
