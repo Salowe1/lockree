@@ -28,6 +28,9 @@ jobs:
       - name: Add Edge Detection
         run: flutter pub add edge_detection
 
+      - name: List Files in Directory
+        run: ls -R /Users/runner/work/lockree/lockree
+
       - name: Install Pods
         run: |
           cd ios
