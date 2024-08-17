@@ -1,8 +1,8 @@
 # Define a global platform for your project
-platform :ios, '12.0'
+platform :ios, '13.0'
 
 # Specify the path to the Xcode project
-project 'Runner.xcodeproj'
+project 'Runner.xcworkspace'
 
 target 'Runner' do
   # Use dynamic frameworks
