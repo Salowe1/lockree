@@ -11,12 +11,7 @@ target 'Runner' do
 
   # Firebase pods
 
-  pod 'Firebase/Core'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Storage' 
-  pod 'Firebase/AppCheck' 
-  pod 'Firebase/Analytics' 
+  
 
   # Add any other pods you need
 
