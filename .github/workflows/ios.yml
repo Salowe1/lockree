@@ -16,18 +16,6 @@ jobs:
           channel: 'stable'
           architecture: x64
 
-      - name: Install Dependencies
-        run: flutter pub get -v
-
-      - name: Clean Flutter Build
-        run: flutter clean
-
-      - name: Remove Edge Detection
-        run: flutter pub remove edge_detection
-
-      - name: Add Edge Detection
-        run: flutter pub add edge_detection
-
       - name: List Files in Directory
         run: ls -R /Users/runner/work/lockree/lockree
 
