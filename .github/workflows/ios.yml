@@ -20,9 +20,14 @@ jobs:
         run: flutter pub get -v
 
       - name: Install Dependencies
-        run: flutter clean      
+        run: flutter clean 
 
-      
+      - name: Remove edge  
+        run: flutter pub remove edge_detection
+
+      - name: Install edge   
+        run: flutter pub add edge_detection
+
 
       
 
