@@ -1,4 +1,4 @@
-name: Build and Release iOS 
+name: Build and Release iOS
 
 on:
   workflow_dispatch:
@@ -19,19 +19,30 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get -v
 
-      - name: Install Dependencies
-        run: flutter clean 
+      - name: Clean Flutter Build
+        run: flutter clean
 
-      - name: Remove edge  
+      - name: Remove Edge Detection
         run: flutter pub remove edge_detection
 
-      - name: Install edge   
+      - name: Add Edge Detection
         run: flutter pub add edge_detection
 
+      - name: Initialize CocoaPods
+        run: pod init
 
-      
+      - name: Configure Podfile
+        run: |
+          echo "platform :ios, '12.0'" > ios/Podfile
+          echo "target 'Runner' do" >> ios/Podfile
+          echo "  use_frameworks!" >> ios/Podfile
+          echo "  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))" >> ios/Podfile
+          echo "end" >> ios/Podfile
 
-     
+      - name: Install Pods
+        run: |
+          cd ios
+          pod install
 
       - name: Build iOS Release
         run: flutter build ios --release --no-codesign
